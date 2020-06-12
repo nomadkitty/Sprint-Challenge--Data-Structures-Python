@@ -10,15 +10,18 @@ class RingBuffer:
     def append(self, item):
         # before the list is full, keep adding item to the tail and track the most recent addition
         if len(self.storage) < self.capacity:
-            self.current = self.storage.add_to_tail(item)
+            self.storage.add_to_tail(item)
+            self.current = self.storage.tail
         # when the list is full
         elif len(self.storage) == self.capacity:
             if self.current.next == None:
                 self.storage.remove_from_head()
-                self.current = self.storage.add_to_head(item)
+                self.storage.add_to_head(item)
+                self.current = self.storage.head
             else:
                 self.current.next.delete()
-                self.current = self.current.insert_after(item)
+                self.current.insert_after(item)
+                self.current = self.current.next
 
     def get(self):
         list_buffer_content = []

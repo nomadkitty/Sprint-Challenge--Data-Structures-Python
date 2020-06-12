@@ -41,10 +41,10 @@ class LinkedList:
 
     def reverse_list(self, node, prev):
         prev = None
-        curr = self.head
-        while curr != None:
-            nextTemp = curr.next_node
-            curr.next_node = prev
-            prev = curr
-            curr = nextTemp
+        node = self.head
+        while node != None:
+            nextTemp = node.next_node
+            node.next_node = prev
+            prev = node
+            node = nextTemp
         self.head = prev
